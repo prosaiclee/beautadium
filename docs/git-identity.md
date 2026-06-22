@@ -1,55 +1,60 @@
-# Git / GitHub 정체성 규칙 — K-Beauty Cards
+# Git / GitHub 정체성 방침 — K-Beauty Cards
 
-**작성:** 2026-06-22
-**범위:** 이 저장소(K-Beauty Cards)에 한정
+**작성:** 2026-06-22 (개정)
+**범위:** 이 저장소(K-Beauty Cards)
 
 ---
 
-## 규칙
+## 결론
 
-이 프로젝트의 모든 git 커밋과 GitHub 활동은 **개인 아이디와 분리된 전용 아이디**로 진행한다.
+이 프로젝트는 **단일 개인 계정 `prosaiclee`로 운영**하고, **사업화 시점에 GitHub Organization을 만들어 그쪽으로 저장소를 이전(transfer)** 한다.
+
+> 이전 검토안(전용 개인 계정 `lalangueandseed`로 분리)은 폐기. 이유는 아래 "배경" 참고.
 
 | 항목 | 값 |
 |---|---|
-| GitHub / git 사용자명 | `lalangueandseed` |
-| 커밋 이메일 | `lalangueandseed@gmail.com` |
-| 적용 범위 | **이 저장소 한정** (git `--local` 설정) |
-
-> 다른 개인 프로젝트는 별도 아이디를 계속 사용할 수 있으며, 이 규칙은 본 저장소에만 적용된다.
+| GitHub / git 사용자명 | `prosaiclee` |
+| 커밋 이메일 | `150650793+prosaiclee@users.noreply.github.com` (GitHub noreply) |
+| 적용 범위 | 이 저장소 한정 (git `--local` 설정) |
+| 사업화 시 | GitHub **Organization** 생성 → repo transfer |
 
 ---
 
-## 배경
+## 배경 — 왜 두 번째 개인 계정으로 분리하지 않는가
 
-- 이 프로젝트는 향후 **유료 사업화**를 계획하고 있어, 커밋 기록을 처음부터 개인 활동 이력과 분리해 둔다.
-- 저장소 이관·공개·협업자 합류 시 개인 정체성과 섞이지 않도록 하기 위함.
+- **사업화의 올바른 그릇은 "두 번째 개인 계정"이 아니라 GitHub Organization이다.** 법인 설립·협업자/투자자 합류 시 표준 절차는 Org 생성 후 repo transfer이며, 그 순간 "이전에 어느 개인 계정에 있었는지"는 무의미해진다.
+- 따라서 지금 별도 개인 계정으로 분리해두는 미래 가치는 거의 없고, 두 계정 병행의 **인증 혼동·인지 부담이라는 실재 비용**만 남는다.
+- 코드의 법적 소유권은 GitHub 계정과 무관하며, 사업화 시 법인 IP 양도로 정리된다.
+
+## 이전(transfer)이 안전한 근거
+
+- **저장소 transfer는 GitHub 정식 기능** — 커밋 히스토리·이슈·PR·브랜치 보존, 기존 URL 자동 리다이렉트.
+- **커밋 attribution은 GitHub 계정이 아니라 커밋 이메일로 귀속** — 호스팅 계정과 독립적.
+- 현재 커밋 수가 적어, 필요 시 이메일 표준 변경 비용도 사실상 0.
 
 ---
 
 ## 적용 방법 (재현용)
 
-저장소 로컬 설정으로 고정한다 (전역 설정과 무관하게 이 프로젝트에만 적용):
-
 ```bash
-git config --local user.name  "lalangueandseed"
-git config --local user.email "lalangueandseed@gmail.com"
+git config --local user.name  "prosaiclee"
+git config --local user.email "150650793+prosaiclee@users.noreply.github.com"
 ```
 
 확인:
 
 ```bash
-git config --local user.name   # lalangueandseed
-git config --local user.email  # lalangueandseed@gmail.com
+git config --local user.name   # prosaiclee
+git config --local user.email  # 150650793+prosaiclee@users.noreply.github.com
+git log --format='%an <%ae>'   # 모든 커밋 prosaiclee 확인
 ```
 
 ---
 
-## 향후 분리 강화 (사업화 시점 권고)
+## 사업화 시점 체크리스트
 
-현재 `lalangueandseed@gmail.com`은 본인 개인 메일과 동일하다. 진짜 사업 정체성 분리를 위해서는 유료화/공개 시점에 한 단계 더 분리할 것을 권장한다.
-
-- [ ] 사업 전용 이메일 확보 (도메인 메일 또는 분리된 gmail)
-- [ ] 해당 메일로 별도 GitHub 계정 또는 Organization 생성 → 저장소 이관
-- [ ] 핸들을 제품/브랜드명 기반으로 검토 (신뢰도 측면)
-
-> **팁:** 커밋 수가 적을 때 정체성을 바꾸는 비용이 가장 작다. 최종 식별자는 빠를수록 좋다.
+- [ ] GitHub Organization 생성 (제품/브랜드명 기반 권장)
+- [ ] 이 저장소를 Organization으로 transfer
+- [ ] 로컬 `git remote set-url`로 새 URL 반영
+- [ ] (필요 시) 협업자·권한·브랜치 보호 규칙 설정
+- [ ] 법인 설립 시 코드 IP 양도 정리
