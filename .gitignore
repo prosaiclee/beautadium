@@ -1,0 +1,29 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+
+# Env / secrets (절대 커밋 금지)
+.env
+.env.local
+.env.*.local
+*.env
+
+# Firebase / cloud service account keys (방어적)
+*-firebase-adminsdk-*.json
+serviceAccount*.json
+service-account*.json
+
+# Keys & certs
+*.pem
+*.key
+*.p12
+*.pfx
+
+# Local tooling / personal
+.claude/settings.local.json
+
+# OS / editor
+.DS_Store
+Thumbs.db
